@@ -31,7 +31,7 @@ class AnalyticsClient
      *
      * @return self
      */
-    public function setCacheLifeTimeInMinutes(int $cacheLifeTimeInMinutes)
+    public function setCacheLifeTimeInMinutes($cacheLifeTimeInMinutes)
     {
         $this->cacheLifeTimeInMinutes = $cacheLifeTimeInMinutes;
 
@@ -49,7 +49,7 @@ class AnalyticsClient
      *
      * @return array|null
      */
-    public function performQuery(string $viewId, DateTime $startDate, DateTime $endDate, string $metrics, array $others = [])
+    public function performQuery(string $viewId, DateTime $startDate, DateTime $endDate, $metrics, $others = [])
     {
         $cacheName = $this->determineCacheName(func_get_args());
 
@@ -76,7 +76,7 @@ class AnalyticsClient
     /*
      * Determine the cache name for the set of query properties given.
      */
-    protected function determineCacheName(array $properties): string
+    protected function determineCacheName($properties)
     {
         return 'spatie.laravel-analytics.'.md5(serialize($properties));
     }
